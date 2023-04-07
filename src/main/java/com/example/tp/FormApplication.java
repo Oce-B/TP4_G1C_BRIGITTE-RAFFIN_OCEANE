@@ -1,9 +1,13 @@
 package com.example.tp;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,11 +25,16 @@ import java.lang.reflect.Field;
 */
 
     public class FormApplication extends Application{
+
+        public void onSaveButton(){}
+        public void onExitButton(){
+            System.out.println("Closing");
+            System.exit(0);
+        }
         @Override
         public void start(Stage stage) throws IOException{
-            FXMLLoader fxmlLoader = new FXMLLoader(FormApplication.class.getResource("hello-view.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-            stage.setTitle("Formulaire");
+          //  FXMLLoader fxmlLoader = new FXMLLoader(FormApplication.class.getResource("hello-view.fxml"));
+
 
 
 
@@ -46,8 +55,35 @@ import java.lang.reflect.Field;
             studentButton.setToggleGroup(toggleGroup);
             staffButton.setToggleGroup(toggleGroup);
 
-            
+            GridPane root = new GridPane();
+            root.add(userName,0,0);
+            root.add(nameField,1,0);
+
+            root.add(password,0,1);
+            root.add(passwordField,1,1);
+
+            root.add(email,0,2);
+            root.add(emailField,1,2);
+
+            root.add(studentButton,0,3);
+            root.add(staffButton,1,3);
+
+            root.add(saveButton,1,4);
+            root.add(exitButton,0,4);
+
+
+            saveButton.setOnAction(actionEvent -> {
+                onSaveButton();
+            });
+            exitButton.setOnAction(actionEvent -> {
+                onExitButton();
+            });
+            Scene scene = new Scene(root, 320, 240);
+            stage.setTitle("Formulaire");
             stage.setScene(scene);
+            stage.setOnCloseRequest(windowEvent -> {
+                onExitButton();
+            });
             stage.show();
 
 
