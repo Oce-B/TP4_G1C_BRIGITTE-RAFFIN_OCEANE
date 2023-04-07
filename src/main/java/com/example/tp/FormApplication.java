@@ -26,7 +26,9 @@ import java.lang.reflect.Field;
 
     public class FormApplication extends Application{
 
-        public void onSaveButton(){}
+        public void onSaveButton(){
+            System.out.println("Saving!!!");
+        }
         public void onExitButton(){
             System.out.println("Closing");
             System.exit(0);
@@ -43,17 +45,20 @@ import java.lang.reflect.Field;
              Label email= new Label("Email");
 
             TextField nameField = new TextField();
+
             TextField passwordField = new TextField();
             TextField emailField = new TextField();
 
-            Button saveButton= new Button();
-            Button exitButton = new Button();
+            Button saveButton= new Button("Save");
+            Button exitButton = new Button("exit");
             ToggleGroup toggleGroup = new ToggleGroup();
-            RadioButton studentButton = new RadioButton();
-            RadioButton staffButton = new RadioButton();
+            RadioButton studentButton = new RadioButton("Student");
+            RadioButton staffButton = new RadioButton("Staff");
+
 
             studentButton.setToggleGroup(toggleGroup);
             staffButton.setToggleGroup(toggleGroup);
+            
 
             GridPane root = new GridPane();
             root.add(userName,0,0);
